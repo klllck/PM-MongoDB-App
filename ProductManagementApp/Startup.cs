@@ -24,6 +24,7 @@ namespace ProductManagementApp
             services.AddSingleton<IDbClient, DbClient>();
             services.Configure<AppDbConfig>(Configuration);
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IStoreService, StoreService>();
             services.AddControllersWithViews();
         }
 

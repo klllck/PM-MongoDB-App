@@ -1,27 +1,24 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using ProductManagementApp.Backend.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace ProductManagementApp.Backend.Data
+namespace ProductManagementApp.ViewModels
 {
-    public class Product
+    public class ProductViewModel
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
 
-        [BsonElement("name")]
         public string Name { get; set; }
 
-        [BsonElement("amount")]
         public double Amount { get; set; }
 
-        [BsonElement("price")]
         public double Price { get; set; }
 
+        public List<Store> Stores { get; set; }
 
-        [BsonElement("store_id")]
         public string StoreId { get; set; }
     }
 }

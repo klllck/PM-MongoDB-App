@@ -9,5 +9,6 @@ namespace ProductManagementApp.Backend.Interfaces
     public interface IDbClient
     {
         IMongoCollection<Product> GetProductsCollection();
+        IMongoCollection<Store> GetStoresCollection();
     }
 }

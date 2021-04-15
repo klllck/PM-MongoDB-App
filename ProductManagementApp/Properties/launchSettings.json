@@ -14,7 +14,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_NAME": "ProductManagementDB",
-        "PRODUCTS_COLLECTION_NAME": "Products"
+        "PRODUCTS_COLLECTION_NAME": "Products",
+        "STORES_COLLECTION_NAME": "Stores"
       }
     },
     "ProductManagementApp": {
@@ -25,7 +26,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_NAME": "ProductManagementDB",
-        "PRODUCTS_COLLECTION_NAME": "Products"
+        "PRODUCTS_COLLECTION_NAME": "Products",
+        "STORES_COLLECTION_NAME": "Stores"
       }
     }
   }

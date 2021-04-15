@@ -14,6 +14,15 @@ namespace ProductManagementApp.Backend
         {
             _products = dbClient.GetProductsCollection();
         }
+        public List<Product> GetAllProducts()
+        {
+            return _products.Find(p => true).ToList();
+        }
+
+        public Product GetProductById(string id)
+        {
+            return _products.Find(p => p.Id == id).First();
+        }
 
         public Product AddProduct(Product product)
         {
@@ -24,16 +33,6 @@ namespace ProductManagementApp.Backend
         public void DeleteProduct(string id)
         {
             _products.DeleteOne(p => p.Id == id);
-        }
-
-        public List<Product> GetAllProducts()
-        {
-            return _products.Find(p => true).ToList();
-        }
-
-        public Product GetProductById(string id)
-        {
-            return _products.Find(p => p.Id == id).First();
         }
 
         public Product UpdateProduct(Product product)
