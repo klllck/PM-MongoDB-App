@@ -1,8 +1,5 @@
 ﻿using MongoDB.Driver;
 using ProductManagementApp.Backend.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProductManagementApp.Backend.Interfaces
 {
@@ -10,5 +7,7 @@ namespace ProductManagementApp.Backend.Interfaces
     {
         IMongoCollection<Product> GetProductsCollection();
         IMongoCollection<Store> GetStoresCollection();
+        IMongoCollection<Supplier> GetSuppliersCollection();
+        IMongoCollection<Purchase> GetPurchasesCollection();
     }
 }

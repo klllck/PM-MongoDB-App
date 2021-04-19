@@ -1,0 +1,22 @@
+﻿@model ProductManagementApp.ViewModels.SupplierViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Details">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <select class="custom-select form-group"
+                    asp-for="SupplierId" asp-items="@(new SelectList(Model.Suppliers, "Id", "Name"))">
+                <option>Выберите поставщика...</option>
+            </select>
+            <div class="form-group">
+                <input type="submit" value="Выбрать" class="btn btn-primary" />
+            </div>
+        </form>
+        <hr />
+        @await Html.PartialAsync("_ProductsTable")
+    </div>
+</div>

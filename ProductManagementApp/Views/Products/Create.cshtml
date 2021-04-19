@@ -4,9 +4,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Добавить товар</h1>
 
-<h4>Product</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,11 +15,6 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Amount" class="control-label"></label>
-                <input asp-for="Amount" class="form-control" />
-                <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
@@ -39,7 +33,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Вернуться на список товаров</a>
 </div>
 
 @section Scripts {

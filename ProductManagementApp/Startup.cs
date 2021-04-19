@@ -25,6 +25,7 @@ namespace ProductManagementApp
             services.Configure<AppDbConfig>(Configuration);
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IStoreService, StoreService>();
+            services.AddTransient<ISupplierService, SupplierService>();
             services.AddControllersWithViews();
         }
 

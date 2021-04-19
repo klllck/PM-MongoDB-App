@@ -1,0 +1,54 @@
+﻿@model ProductManagementApp.ViewModels.StoreViewModel
+@{
+    ViewData["Title"] = "Информация о магазине";
+}
+
+<h1>Магазин @Model.Name</h1>
+<h2>Адрес: @Model.Address | @Model.PostalCode</h2>
+<h3>Номер телефона: @Model.Phone</h3>
+
+<table class="table table-bordered table-hover" id="dataTable">
+    <thead>
+        <tr>
+            <th>
+                <p>ID товара</p>
+            </th>
+            <th>
+                <p>Название товара</p>
+
+            </th>
+            <th>
+                <p>Цена товара</p>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+        <tr>
+            <td>
+                <p>@product.Id</p>
+            </td>
+            <td>
+                <p>@product.Name</p>
+            </td>
+            <td>
+                <p>@product.Price</p>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+}

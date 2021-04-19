@@ -1,9 +1,7 @@
 ﻿using MongoDB.Driver;
 using ProductManagementApp.Backend.Data;
 using ProductManagementApp.Backend.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ProductManagementApp.Backend
 {
@@ -23,7 +21,7 @@ namespace ProductManagementApp.Backend
 
         public Store GetStoreById(string id)
         {
-            return _stores.Find(s => s.Id == id).First();
+            return _stores.Find(s => s.Id == id).FirstOrDefault();
         }
 
         public Store AddStore(Store store)
@@ -39,7 +37,6 @@ namespace ProductManagementApp.Backend
 
         public Store UpdateStore(Store store)
         {
-            GetStoreById(store.Id);
             _stores.ReplaceOne(p => p.Id == store.Id, store);
             return store;
         }

@@ -15,7 +15,9 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_NAME": "ProductManagementDB",
         "PRODUCTS_COLLECTION_NAME": "Products",
-        "STORES_COLLECTION_NAME": "Stores"
+        "STORES_COLLECTION_NAME": "Stores",
+        "SUPPLIERS_COLLECTION_NAME": "Suppliers",
+        "PURCHASES_COLLECTION_NAME": "Purchases"
       }
     },
     "ProductManagementApp": {
@@ -27,7 +29,9 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "DATABASE_NAME": "ProductManagementDB",
         "PRODUCTS_COLLECTION_NAME": "Products",
-        "STORES_COLLECTION_NAME": "Stores"
+        "STORES_COLLECTION_NAME": "Stores",
+        "SUPPLIERS_COLLECTION_NAME": "Suppliers",
+        "PURCHASES_COLLECTION_NAME": "Purchases"
       }
     }
   }

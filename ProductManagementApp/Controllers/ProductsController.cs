@@ -2,15 +2,9 @@
 using ProductManagementApp.Backend.Data;
 using ProductManagementApp.Backend.Interfaces;
 using ProductManagementApp.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ProductManagementApp.Controllers
 {
-    //[ApiController]
-    //[Route("[controller]")]
     public class ProductsController : Controller
     {
         private readonly IProductService _productService;
@@ -22,28 +16,20 @@ namespace ProductManagementApp.Controllers
             _storeService = storeService;
         }
 
-        [HttpGet]
+        [HttpGet("products")]
         public IActionResult GetAll()
         {
-            //return Ok(_productService.GetAllProducts());
             var model = _productService.GetAllProducts();
             return View("List", model);
         }
 
-        [HttpGet("{id}", Name = "GetProduct")]
-        public IActionResult GetById(string id)
+        [HttpGet("products/details/{id}")]
+        public IActionResult Detail(string id)
         {
             return Ok(_productService.GetProductById(id));
         }
 
-        [HttpDelete]
-        public IActionResult Delete(string id)
-        {
-            _productService.DeleteProduct(id);
-            return NoContent();
-        }
-
-        [HttpGet]
+        [HttpGet("/products/create")]
         public IActionResult Create()
         {
             var stores = _storeService.GetAllStores();
@@ -56,19 +42,25 @@ namespace ProductManagementApp.Controllers
         }
 
         [HttpPost, ActionName("Create")]
-        public IActionResult Add(ProductViewModel productModel)
+        public IActionResult Add(ProductViewModel productViewModel)
         {
             var product = new Product
             {
-                Name = productModel.Name,
-                Amount = productModel.Amount,
-                Price = productModel.Price,
-                StoreId = productModel.StoreId
+                Name = productViewModel.Name,
+                Price = productViewModel.Price,
+                StoreId = productViewModel.StoreId
             };
 
             _productService.AddProduct(product);
 
             return Redirect("~/Home/Index");
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(string id)
+        {
+            _productService.DeleteProduct(id);
+            return NoContent();
         }
 
         [HttpPut]

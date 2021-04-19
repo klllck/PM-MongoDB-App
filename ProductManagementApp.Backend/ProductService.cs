@@ -14,6 +14,7 @@ namespace ProductManagementApp.Backend
         {
             _products = dbClient.GetProductsCollection();
         }
+
         public List<Product> GetAllProducts()
         {
             return _products.Find(p => true).ToList();
@@ -37,7 +38,6 @@ namespace ProductManagementApp.Backend
 
         public Product UpdateProduct(Product product)
         {
-            GetProductById(product.Id);
             _products.ReplaceOne(p => p.Id == product.Id, product);
             return product;
         }
