@@ -16,7 +16,50 @@
                 <input type="submit" value="Выбрать" class="btn btn-primary" />
             </div>
         </form>
+    </div>
+    <div class="col-md-8">
         <hr />
-        @await Html.PartialAsync("_ProductsTable")
+        @if (Model.Products != null)
+        {
+            <table class="table table-bordered table-hover" id="dataTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <p>Название товара</p>
+                        </th>
+                        <th>
+                            <p>Цена товара</p>
+                        </th>
+                        <th>
+                            <p>Цена со скидкой</p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>
+                                <p>@product.Name</p>
+                            </td>
+                            <td>
+                                <p>@product.Price</p>
+                            </td>
+                            <td>
+                                <p>@product.DiscountPrice</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
     </div>
 </div>
+
+@section Scripts {
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+    });
+</script>
+}

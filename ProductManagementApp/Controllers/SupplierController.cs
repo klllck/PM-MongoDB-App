@@ -50,7 +50,7 @@ namespace ProductManagementApp.Controllers
             supplierViewModel.Products = productsModel;
             supplierViewModel.Suppliers = _supplierService.GetAllSuppliers();
 
-            return PartialView(supplierViewModel);
+            return View(supplierViewModel);
         }
 
         [HttpGet("suppliers/{id}")]
