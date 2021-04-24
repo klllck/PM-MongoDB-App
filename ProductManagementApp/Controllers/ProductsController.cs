@@ -47,6 +47,7 @@ namespace ProductManagementApp.Controllers
             var product = new Product
             {
                 Name = productViewModel.Name,
+                Amount = productViewModel.Amount,
                 Price = productViewModel.Price,
                 StoreId = productViewModel.StoreId
             };

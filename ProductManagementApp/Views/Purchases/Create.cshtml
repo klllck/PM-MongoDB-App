@@ -1,0 +1,59 @@
+﻿@model ProductManagementApp.ViewModels.PurchasesViewModel
+@{
+    ViewData["Title"] = "Создать закупку";
+}
+
+<h4>Выберите нужные товары из списка:</h4>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <select class="custom-select form-group"
+                    asp-for="StoreId" asp-items="@(new SelectList(Model.Stores, "Id", "Name"))">
+            </select>
+            <hr />
+            <table>
+                <tr>
+                    <td>
+                        <select class="custom-select form-group allProducts" style="width: 100px;" size="10" multiple
+                                asp-for="ProductId" asp-items="@(new SelectList(Model.Products, "Id", "Name"))">
+                        </select>
+                    </td>
+                    <td>
+                        <div class="m-2">
+                            <div id="btnAdd" class="btn btn-info rounded"> + </div>
+                            <div id="btnRemove" class="btn btn-secondary rounded"> - </div>
+                        </div>
+                    </td>
+                    <td>
+                        <select class="choosenProducts" style="width: 100px;" name="choosenProducts" size="10" multiple>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Продолжить" id="btnSubmit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+            $('#btnAdd').click(function () {
+                var options = $('select.allProducts option:selected').sort().clone();
+                $('select.choosenProducts').append(options);
+                $('select.allProducts option:selected').remove();
+
+                $('select.choosenProducts option').prop("selected", true);
+            });
+            $('#btnRemove').click(function () {
+                var options = $('select.choosenProducts option:selected').sort().clone();
+                $('select.allProducts').append(options);
+                $('select.choosenProducts option:selected').remove();
+
+                $('select.choosenProducts option').prop("selected", true);
+            });
+    </script>
+}

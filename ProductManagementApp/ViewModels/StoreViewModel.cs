@@ -8,6 +8,7 @@ namespace ProductManagementApp.ViewModels
 {
     public class StoreViewModel
     {
+        public string StoreId { get; set; }
         public string Name { get; set; }
 
         public string Address { get; set; }
@@ -15,6 +16,7 @@ namespace ProductManagementApp.ViewModels
         public string Phone { get; set; }
 
         public string PostalCode { get; set; }
+
 
         public List<Product> Products { get; set; }
     }

@@ -12,6 +12,9 @@ namespace ProductManagementApp.Backend.Data
         [BsonElement("name")]
         public string Name { get; set; }
 
+        [BsonElement("amount")]
+        public int Amount { get; set; }
+
         [BsonElement("price")]
         public double Price { get; set; }
 

@@ -13,14 +13,17 @@ namespace ProductManagementApp.Backend.Data
         [BsonElement("date_time")]
         public DateTime Date { get; set; }
 
-        [BsonElement("amount")]
-        public int Amount { get; set; }
+        [BsonElement("total_amount")]
+        public int TotalAmount { get; set; }
 
-        [BsonElement("price")]
-        public double Price { get; set; }
+        [BsonElement("total_price")]
+        public double TotalPrice { get; set; }
 
 
-        [BsonElement("supplier_id")]
+        [BsonElement("product_id")]
         public string SupplierId { get; set; }
+
+        [BsonElement("store_id")]
+        public string StoreId { get; set; }
     }
 }
