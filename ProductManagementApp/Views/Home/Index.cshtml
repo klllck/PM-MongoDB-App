@@ -2,23 +2,50 @@
     ViewData["Title"] = "Home Page";
 }
 
-@*<div class="home page">
-    <canvas id="canvas1"></canvas>
-    <img src="~/images/management.jpeg" class="img-bg" />
+<div class="home">
+    <div class="box-blur">
+        <img src="~/images/management.jpeg" class="img-bg" />
+    </div>
     <div class="intro-container">
-        <div class="intro-content">
-            <h1 class="intro-title">
+        <div class="m-4">
+            <div class="display-4 text-white">
                 Система управления закупками
-                <span class="border"></span>
-            </h1>
-            <p class="intro-text">
-                лидер на рынке исследований и испытаний продукции
+            </div>
+            <h1 class="font-weight-bold text-white">Pro Management</h1>
+            <hr style="background-color: #fff" />
+            <p class="intro-text text-white">
+                Улучшайте процесс закупок и работу с поставщиками при помощи инноваций
             </p>
         </div>
-    </div>
-</div>*@
-
-    <div class="text-center">
-            <h1 class="display-4">Welcome</h1>
-            <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        <br />
+        <div class="section">
+            <h2 class="text-white ml-4">Основные разделы</h2>
+            <div class="section-container">
+                <div class="section-content">
+                    <img src="~/images/products.jpeg" class="section-img" alt="">
+                    <div class="section-info">
+                        <a class="nav-link text-white" asp-controller="Products" asp-action="GetAll">
+                            <h2>Продукты</h2>
+                        </a>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <img src="~/images/stores2.png" class="section-img" alt="">
+                    <div class="section-info">
+                        <a class="nav-link text-white" asp-controller="Stores" asp-action="GetAll">
+                            <h2>Магазины</h2>
+                        </a>   
+                    </div>
+                </div>
+                <div class="section-content">
+                    <img src="~/images/supply.jpeg" class="section-img" alt="">
+                    <div class="section-info">
+                        <a class="nav-link text-white" asp-controller="Supplier" asp-action="Details">
+                            <h2>Поставщики</h2>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
