@@ -16,50 +16,66 @@
                 <input type="submit" value="Выбрать" class="btn btn-primary" />
             </div>
         </form>
-    </div>
-    <div class="col-md-8">
-        <hr />
-        @if (Model.Products != null)
+        @if (Model.SupplierEmail != null)
         {
-            <table class="table table-bordered table-hover" id="dataTable">
-                <thead>
-                    <tr>
-                        <th>
-                            <p>Название товара</p>
-                        </th>
-                        <th>
-                            <p>Цена товара</p>
-                        </th>
-                        <th>
-                            <p>Цена со скидкой</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var product in Model.Products)
-                    {
-                        <tr>
-                            <td>
-                                <p>@product.Name</p>
-                            </td>
-                            <td>
-                                <p>@product.Price</p>
-                            </td>
-                            <td>
-                                <p>@product.DiscountPrice</p>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+            <div>
+                <hr />
+                <h2>@Model.SupplierName</h2>
+                <h5>@Model.SupplierDescription</h5>
+                <hr />
+                <div class="form-group">
+                    <h5>Контактная информация:</h5>
+                    <h4><i class="fas fa-phone">: </i> @Model.SupplierPhone</h4>
+                    <h4><i class="fas fa-at">: </i> @Model.SupplierEmail</h4>
+                </div>
+            </div>
         }
     </div>
+    @if (Model.Products != null)
+    {
+        <div class="myBox">
+            <div class="col-md-12">
+                <hr />
+                <table class="table table-bordered table-hover" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>
+                                <p>Название товара</p>
+                            </th>
+                            <th>
+                                <p>Цена товара</p>
+                            </th>
+                            <th>
+                                <p>Цена со скидкой</p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td>
+                                    <p>@product.Name</p>
+                                </td>
+                                <td>
+                                    <p>@product.Price</p>
+                                </td>
+                                <td>
+                                    <p>@product.DiscountPrice</p>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
 </div>
 
 @section Scripts {
-<script>
-    $(document).ready(function () {
-        $('#dataTable').DataTable();
-    });
-</script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
 }

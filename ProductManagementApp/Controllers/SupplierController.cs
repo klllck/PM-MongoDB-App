@@ -2,6 +2,7 @@
 using ProductManagementApp.Backend.Data;
 using ProductManagementApp.Backend.Interfaces;
 using ProductManagementApp.ViewModels;
+using System;
 using System.Linq;
 
 namespace ProductManagementApp.Controllers
@@ -38,17 +39,25 @@ namespace ProductManagementApp.Controllers
         public IActionResult Details(SupplierViewModel supplierViewModel)
         {
             var supplierId = supplierViewModel.SupplierId;
+            var supplier = _supplierService.GetSupplierById(supplierId);
             var products = _productService.GetAllProducts().FindAll(p => p.SupplierId == supplierId);
 
             var productsModel = products.Select(p => new ProductViewModel
             {
                 Name = p.Name,
                 Price = p.Price,
-                DiscountPrice = p.Price - (p.Price * 0.2)
+                DiscountPrice = Math.Round(p.Price - p.Price * 0.2, 2)
             });
 
-            supplierViewModel.Products = productsModel;
-            supplierViewModel.Suppliers = _supplierService.GetAllSuppliers();
+            if (supplier != null)
+            {
+                supplierViewModel.SupplierName = supplier.Name;
+                supplierViewModel.SupplierDescription = supplier.Description;
+                supplierViewModel.SupplierPhone = supplier.Phone;
+                supplierViewModel.SupplierEmail = supplier.Email;
+                supplierViewModel.Products = productsModel;
+                supplierViewModel.Suppliers = _supplierService.GetAllSuppliers();
+            }
 
             return View(supplierViewModel);
         }
@@ -64,33 +73,5 @@ namespace ProductManagementApp.Controllers
         {
             return Ok(_supplierService.AddSupplier(supplier));
         }
-
-        //[HttpPost, ActionName("Create")]
-        //public IActionResult Add(ProductViewModel productViewModel)
-        //{
-        //    var product = new Product
-        //    {
-        //        Name = productViewModel.Name,
-        //        Price = productViewModel.Price,
-        //        StoreId = productViewModel.StoreId
-        //    };
-
-        //    _productService.AddProduct(product);
-
-        //    return Redirect("~/Home/Index");
-        //}
-
-        //[HttpDelete]
-        //public IActionResult Delete(string id)
-        //{
-        //    _supplierService.DeleteSupplier(id);
-        //    return NoContent();
-        //}
-
-        //[HttpPut]
-        //public IActionResult Update(Supplier supplier)
-        //{
-        //    return Ok(_supplierService.UpdateSupplier(supplier));
-        //}
     }
 }

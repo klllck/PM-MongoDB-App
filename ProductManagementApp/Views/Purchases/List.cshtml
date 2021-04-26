@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ProductManagementApp.ViewModels.PurchasesViewModel>
+@{
+    ViewData["Title"] = "Список закупок";
+}
+
+<div class="myBox">
+    <h1>Список закупок</h1>
+    <hr />
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <p>Дата закупки</p>
+                </th>
+                <th>
+                    <p>Количество закупленных товаров</p>
+                </th>
+                <th>
+                    <p>Общаая стоимость закупки</p>
+                </th>
+                <th>
+                    <p>Магазин</p>
+                </th>
+                <th>
+                    <p>Поставщик</p>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p>@item.Date</p>
+                    </td>
+                    <td>
+                        <p>@item.TotalAmount</p>
+                    </td>
+                    <td>
+                        <p>@item.TotalPrice ₽</p>
+                    </td>
+                    <td>
+                        <a asp-controller="Stores" asp-action="Detail" asp-route-id="@item.StoreId">
+                            <p>@item.StoreName</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a asp-controller="Supplier" asp-action="Details" asp-route-id="@item.SupplierId">
+                            <p>@item.SupplierName</p>
+                        </a>
+                    </td>
+                    <td>
+                        <a onclick="alert('Вы точно хотите завершить данную закупку?')" class="btn btn-success"
+                           asp-action="Delete" asp-route-id="@item.Id">
+                            Закрыть закупку
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

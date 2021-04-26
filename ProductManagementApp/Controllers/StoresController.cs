@@ -9,15 +9,10 @@ namespace ProductManagementApp.Controllers
     {
         private readonly IStoreService _storeService;
         private readonly IProductService _productService;
-        private readonly IPurchaseService _purchaseService;
-        private readonly ISupplierService _supplierService;
-
-        public StoresController(IStoreService storeService, IProductService productService, IPurchaseService purchaseService, ISupplierService supplierService)
+        public StoresController(IStoreService storeService, IProductService productService)
         {
             _storeService = storeService;
             _productService = productService;
-            _purchaseService = purchaseService;
-            _supplierService = supplierService;
         }
 
         [HttpGet("/stores")]
@@ -51,21 +46,6 @@ namespace ProductManagementApp.Controllers
         public IActionResult Add(Store store)
         {
             return Ok(_storeService.AddStore(store));
-        }
-
-        [HttpGet("/store/purchase-create")]
-        public IActionResult CreatePurchase(StoreViewModel storeViewModel)
-        {
-            var products = _productService.GetAllProducts();
-            var storeId = storeViewModel.StoreId;
-
-            var model = new PurchasesViewModel
-            {
-                Products = products,
-                StoreId = storeId,
-            };
-
-            return View(model);
         }
     }
 }

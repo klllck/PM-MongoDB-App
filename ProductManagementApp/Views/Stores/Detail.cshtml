@@ -3,47 +3,58 @@
     ViewData["Title"] = "Информация о магазине";
 }
 
-<h1>Магазин @Model.Name</h1>
-<h2>Адрес: @Model.Address | @Model.PostalCode</h2>
-<h3>Номер телефона: @Model.Phone</h3>
-
-<table class="table table-bordered table-hover" id="dataTable">
-    <thead>
-        <tr>
-            <th>
-                <p>ID товара</p>
-            </th>
-            <th>
-                <p>Название товара</p>
-
-            </th>
-            <th>
-                <p>Цена товара</p>
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var product in Model.Products)
-        {
-        <tr>
-            <td>
-                <p>@product.Id</p>
-            </td>
-            <td>
-                <p>@product.Name</p>
-            </td>
-            <td>
-                <p>@product.Price</p>
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<div class="jumbotron">
+    <h1>Магазин @Model.Name</h1>
+    <h2>Адрес: @Model.Address | @Model.PostalCode</h2>
+    <h3>Номер телефона: @Model.Phone</h3>
+    <hr />
+    <div class="myBox">
+        <table class="table table-bordered table-hover" id="dataTable">
+            <thead>
+                <tr>
+                    <th>
+                        <p>ID товара</p>
+                    </th>
+                    <th>
+                        <p>Название товара</p>
+                    </th>
+                    <th>
+                        <p>Количество на складе</p>
+                    </th>
+                    <th>
+                        <p>Цена товара (за ед.)</p>
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var product in Model.Products)
+                {
+                    <tr>
+                        <td>
+                            <p>@product.Id</p>
+                        </td>
+                        <td>
+                            <p>@product.Name</p>
+                        </td>
+                        <td>
+                            <p>@product.Amount</p>
+                        </td>
+                        <td>
+                            <p>@product.Price ₽</p>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Изменить", "Update", "Products", new { id = product.Id }) |
+                            <a onclick="alert('Вы точно хотите удалить данный товар ?')" asp-action="Delete" asp-route-id="@product.Id">
+                                Удалить
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
 @section Scripts {
     <script>

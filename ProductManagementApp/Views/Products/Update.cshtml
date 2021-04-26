@@ -1,14 +1,13 @@
 ﻿@model ProductManagementApp.ViewModels.ProductViewModel
 @{
-    ViewData["Title"] = "Добавить товар";
+    ViewData["Title"] = "Изменить товар";
 }
 
-<h1>Добавить товар</h1>
-
+<h1>Изменить информацию о товаре</h1>
 <hr />
 <div class="row myBox">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Update">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Название товара:</label>
@@ -21,20 +20,25 @@
                 <span asp-validation-for="Amount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Цена товара (руб.):</label>
+                <label class="control-label">Цена товара:</label>
                 <input asp-for="Price" class="form-control" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
-            <select class="custom-select form-group"
-                    asp-for="StoreId" asp-items="@(new SelectList(Model.Stores, "Id", "Name"))">
-                <option>Выберите магазин...</option>
-            </select>
-            <select class="custom-select form-group"
-                    asp-for="SupplierId" asp-items="@(new SelectList(Model.Suppliers, "Id", "Name"))">
-                <option>Выберите поставщика...</option>
-            </select>
             <div class="form-group">
-                <input type="submit" value="Добавить" class="btn btn-primary" />
+                <label class="control-label">Магазин:</label>
+                <select class="custom-select"
+                        asp-for="StoreId" asp-items="@(new SelectList(Model.Stores, "Id", "Name"))">
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Поставщик:</label>
+                <select class="custom-select"
+                        asp-for="SupplierId" asp-items="@(new SelectList(Model.Suppliers, "Id", "Name"))">
+                </select>
+            </div>
+            <input hidden asp-for="Id"/>
+            <div class="form-group">
+                <input type="submit" value="Подтвердить изменения" class="btn btn-primary" />
             </div>
         </form>
     </div>

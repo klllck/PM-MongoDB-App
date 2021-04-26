@@ -9,11 +9,13 @@ namespace ProductManagementApp.Controllers
     {
         private readonly IProductService _productService;
         private readonly IStoreService _storeService;
+        private readonly ISupplierService _supplierService;
 
-        public ProductsController(IProductService productService, IStoreService storeService)
+        public ProductsController(IProductService productService, IStoreService storeService, ISupplierService supplierService)
         {
             _productService = productService;
             _storeService = storeService;
+            _supplierService = supplierService;
         }
 
         [HttpGet("products")]
@@ -33,10 +35,12 @@ namespace ProductManagementApp.Controllers
         public IActionResult Create()
         {
             var stores = _storeService.GetAllStores();
+            var suppliers = _supplierService.GetAllSuppliers();
 
             var model = new ProductViewModel
             {
-                Stores = stores
+                Stores = stores,
+                Suppliers = suppliers
             };
             return View(model);
         }
@@ -49,25 +53,61 @@ namespace ProductManagementApp.Controllers
                 Name = productViewModel.Name,
                 Amount = productViewModel.Amount,
                 Price = productViewModel.Price,
-                StoreId = productViewModel.StoreId
+                StoreId = productViewModel.StoreId,
+                SupplierId = productViewModel.SupplierId
             };
 
             _productService.AddProduct(product);
 
-            return Redirect("~/Home/Index");
+            return Redirect("/products");
         }
 
-        [HttpDelete]
+        [HttpGet("/products/delete/{id}")]
         public IActionResult Delete(string id)
         {
             _productService.DeleteProduct(id);
-            return NoContent();
+            return Redirect("/products");
         }
 
-        [HttpPut]
-        public IActionResult Update(Product product)
+        [HttpGet("/products/update/{id}")]
+        public IActionResult Update(string id)
         {
-            return Ok(_productService.UpdateProduct(product));
+            if (id != null)
+            {
+                var product = _productService.GetProductById(id);
+                var stores = _storeService.GetAllStores();
+                var suppliers = _supplierService.GetAllSuppliers();
+
+                var model = new ProductViewModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Amount = product.Amount,
+                    Price = product.Price,
+                    Stores = stores,
+                    Suppliers = suppliers
+                };
+                return View(model);
+            }
+            else return NotFound();
+        }
+
+        [HttpPost]
+        public IActionResult Update(ProductViewModel productViewModel)
+        {
+            var product = new Product
+            {
+                Id = productViewModel.Id,
+                Name = productViewModel.Name,
+                Amount = productViewModel.Amount,
+                Price = productViewModel.Price,
+                StoreId = productViewModel.StoreId,
+                SupplierId = productViewModel.SupplierId
+            };
+
+            _productService.UpdateProduct(product);
+
+            return Redirect("/products");
         }
     }
 }

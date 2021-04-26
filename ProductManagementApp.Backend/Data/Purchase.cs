@@ -20,7 +20,7 @@ namespace ProductManagementApp.Backend.Data
         public double TotalPrice { get; set; }
 
 
-        [BsonElement("product_id")]
+        [BsonElement("supplier_id")]
         public string SupplierId { get; set; }
 
         [BsonElement("store_id")]
